@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --danger-color: rgb(240, 5, 5);
+    --success-color: rgb(15, 138, 23);
+    --white-color: #fff;
+    --bg-color: #F2D6BD;
+}
+html, body{
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#main{
+    position: relative;
+}
+
+#checkbox__style{
+    display: none;
+}
+label{
+    width: 100px;
+    height: 100px;
+    background-color: var(--danger-color);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    box-shadow: 0 7px 10px rgba(240, 5, 5, 0.5);
+    transition: 0.3s ease background-color, 0.3s ease transform;
+    overflow: hidden;
+    z-index: 1;
+}
+label::before{
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: var(--white-color);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: inset 0 7px 10px rgba(240, 5, 5, 0.5);
+}
+label:active{
+    transform: translateY(-50%) scale(0.9);
+}
+
+#mark__style{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateZ(-40deg);
+}
+#mark__style:before,
+#mark__style::after{
+    content: '';
+    position: absolute;
+    background-color: var(--white-color);
+}
+
+#mark__style:before{
+    width: 10px;
+    height: 30px;
+    box-shadow: -2px 0 5px rgba(255, 255, 255, 0.5);
+    transform: translate(12px, -50px);
+    opacity: 0;
+    transition: 0.4s ease transform, 0.4s ease box-shadow, 0.4s ease opacity;
+   
+}
+#mark__style::after{
+    width: 10px;
+    height: 50px;
+    box-shadow: -2px 0 5px rgba(255, 255, 255, 0.5);
+    transform: translate(101px, 8px) rotate(80deg);
+    opacity: 0;
+    transition: 0.4s ease transform, 0.4s ease box-shadow, 0.4s ease opacity;
+}
+
+#checkbox__style:checked + label{
+    background-color: var(--success-color);
+    box-shadow: 0 7px 10px rgba(15, 138, 23, 0.5);
+}
+
+#checkbox__style:checked + label::before{
+    width: 0;
+    height: 0;
+}
+#checkbox__style:checked + label #mark__style:before{
+    transform: translate(12px, 11px);
+    opacity: 1;
+}
+#checkbox__style:checked + label #mark__style::after{
+    transform: translate(32px, 8px) rotate(80deg);
+    opacity: 1;
+}
